@@ -1,18 +1,13 @@
 /**
- * PriorityQueue is a pryority queue data base that is consracted to
- *  given 'k' real number elements. (This is priority queue except of
- *  the method increaseKey that I did not implement).
- *  For every new real number that is
- *  insert to the priority queue, if there's a place to another
- *  element in the priority queue, it is insert. Otherwise, the
- *  prioruty queue keeps the k lowest elements from the elements that
- *  in the priority queue and the given new element.
- * @param tree the red-black tree that inside it the elements are being keeped
- * @currentMaxValue the current maximum element in the priority queue.
- * If the priority queue is empty, the parameter the minimum real number.
- * @numberOfElements the number of elements in the priority queue in a
- * a current point of time.
- * @param k the given k [range: k is a possitive natural number]
+ * PriorityQueue is a pryority queue data base.
+ *  In it's construction it is given k real valued elements. 
+ *  For every new element inserted, if there's enough place - it is inserted.
+ *  Otherwise, the prioruty queue keeps the k lowest elements among the elements
+ *  in the priority queue and the new element.
+ * @param tree Red-black tree that holds the elements.
+ * @currentMaxValue The current maximum element in the priority queue.
+ * @numberOfElements Number of elements.
+ * @param k Size of the data base. [Range: k is a possitive natural number].
  */
 class PriorityQueue
 {
@@ -22,7 +17,7 @@ class PriorityQueue
     private int k;
     /**
      * constructor
-     * @param k the given k. [range: k is a possitive natural number]
+     * @param k Size of the data base. [Range: k is a possitive natural number].
      */
     public PriorityQueue (int k)
     {
@@ -40,7 +35,7 @@ class PriorityQueue
         return currentMaxValue;
     }
     /**
-     * prints the k smallest elements that have been exminiated so far.
+     * prints the k lowest elements that have been exminiated so far.
      * It's done with the help of the known method RBTree.inorderTreeWalk().
      */
     public void printkMin()
@@ -49,18 +44,18 @@ class PriorityQueue
         System.out.println();
     }
     /**
-     * deletes the given pos node.
-     * @param pos range: a node from the tree RBTree.
+     * Deletes the given pos node.
+     * @param pos Range: a node from the tree RBTree.
      */
     private RBTNode<Double> delete (RBTNode<Double> pos)
     {
         return tree.RBDelete(pos);
     }
     /**
-     * extracts the maximum value of that inside the priority queue.
-     * it's done by deleting the maximum of the tree,
+     * Extracts the maximum among the priority queue.
+     * (It's done by deleting the maximum of the tree,
      * finding the new maximum of the tree (if exists) and update
-     * numberOfElements.
+     * numberOfElements).
      */
     private void extractMax()
     {
@@ -77,8 +72,8 @@ class PriorityQueue
         }         //line 
     }         //line 
     /**
-     * inserts a given z real value into tree.
-     * @param z range: real numbers
+     * Inserts a given z real valued number into tree.
+     * @param z Range: Real numbers.
      */
     private void insertValueToTree (double z)
     {
@@ -88,12 +83,9 @@ class PriorityQueue
         numberOfElements++;
     }
     /**
-     * checks if the given z value deserves to get into the priority queue:
-     * if there's free space in the priority queue, inserts the given z value
-     * into the tree.
-     * if the priority queue is full, so the method inserts z only if z is
-     * smaller the current maximum value.
-     * @param z range: real numbers.
+     * Checks if the given value z should get into the priority queue:
+     * If there's enough place or it is lower then the current maximum.
+     * @param z Range: real numbers.
      */
     public void insert (double z)
     {
@@ -113,19 +105,17 @@ class PriorityQueue
         }         //line 14
     }
     /**
-     * recurtion method that eventually inserts all the values in the
-     * priority queue into a given arrey. The method does it
-     * in a form of in-order 'walk' on tree.
-     * @param pos a pointer that points to a specific vertex in each itteration.
-     * range: in the first call: the root of tree,
-     * in the next calls: a certain vertex of tree.
-     * @param list into this arrey the values are being insert.
-     * range: in the first call: an empty arrey of real numbers in
-     * length of numberOfElements,
-     * in the next calls: the very same list.
-     * @param i the index that indicates where to insert the next insertion.
-     * range: in the first call: 0, int the next calls: natural possive numbers.
-     * @return the index of the smallest empty cell in list. if the list is full,
+     * Recurtion method that inserts all the elements into a
+     * given array; It is done by "walking" on the tree in-order.
+     * @param pos A pointer that points to a specific vertex in each itteration.
+     * Range: In the first call -  the root of the tree,
+     * in the next calls - a certain vertex of tree.
+     * @param list Into this arrey the values are being inserted.
+     * Range: In the first call - an empty arrey of real numbers in
+     * length of numberOfElements, in the next calls - the very same list.
+     * @param i The index that indicates where to insert the next insertion.
+     * Range: in the first call: 0, in the next calls: Natural possive numbers.
+     * @return The index of the lowest empty cell in list. If the list is full,
      * returns list.length. Likewise, the first call returns list.length
      */
     private int returnAsListRecurtion
@@ -141,11 +131,10 @@ class PriorityQueue
         return i;           //line 8
     }
     /**
-     * in the help of a recurtion method, iserts the values
-     * of the priority queue
-     * into an arrey in a sorted way, and returns the list to the user.
-     * @return sorted arrey (smallest to greatest) of all the values in the
-     * priority queue
+     * A helper to the recursion method returnAsListRecurtion. Inserts the values
+     * of the priority queue into an arrey in a sorted way, and returns the list to the user.
+     * @return A sorted array (smallest to greatest) of all the values in the
+     * priority queue.
      */
     public double[] returnAsList()//changed (added i)
     {
